@@ -26,18 +26,16 @@
 </p>
 
 ## News
-🚀 Mar. 29, 2024: [v0.8.0](https://github.com/geekan/MetaGPT/releases/tag/v0.8.0) released. Now you can use Data Interpreter via pypi package import. Meanwhile, we integrated RAG module and supported multiple new LLMs.
-
-🚀 Mar. 14, 2024: Our **Data Interpreter** paper is on [arxiv](https://arxiv.org/abs/2402.18679). Check the [example](https://docs.deepwisdom.ai/main/en/DataInterpreter/) and [code](https://github.com/geekan/MetaGPT/tree/main/examples/di)!
+🚀 Mar. 29, 2024: [v0.8.0](https://github.com/geekan/MetaGPT/releases/tag/v0.8.0) released. Now you can use Data Interpreter ([arxiv](https://arxiv.org/abs/2402.18679), [example](https://docs.deepwisdom.ai/main/en/DataInterpreter/), [code](https://github.com/geekan/MetaGPT/tree/main/examples/di)) via pypi package import. Meanwhile, we integrated RAG module and supported multiple new LLMs.
 
 🚀 Feb. 08, 2024: [v0.7.0](https://github.com/geekan/MetaGPT/releases/tag/v0.7.0) released, supporting assigning different LLMs to different Roles. We also introduced [Data Interpreter](https://github.com/geekan/MetaGPT/blob/main/examples/di/README.md), a powerful agent capable of solving a wide range of real-world problems.
 
 🚀 Jan. 16, 2024: Our paper [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework
-](https://arxiv.org/abs/2308.00352) accepted for oral presentation **(top 1.2%)** at ICLR 2024, **ranking #1** in the LLM-based Agent category.
+](https://arxiv.org/abs/2308.00352) accepted for **oral presentation (top 1.2%)** at ICLR 2024, **ranking #1** in the LLM-based Agent category.
 
 🚀 Jan. 03, 2024: [v0.6.0](https://github.com/geekan/MetaGPT/releases/tag/v0.6.0) released, new features include serialization, upgraded OpenAI package and supported multiple LLM, provided [minimal example for debate](https://github.com/geekan/MetaGPT/blob/main/examples/debate_simple.py) etc.
 
-🚀 Dec. 15, 2023: [v0.5.0](https://github.com/geekan/MetaGPT/releases/tag/v0.5.0) released, introducing some experimental features such as **incremental development**, **multilingual**, **multiple programming languages**, etc.
+🚀 Dec. 15, 2023: [v0.5.0](https://github.com/geekan/MetaGPT/releases/tag/v0.5.0) released, introducing some experimental features such as incremental development, multilingual, multiple programming languages, etc.
 
 🔥 Nov. 08, 2023: MetaGPT is selected into [Open100: Top 100 Open Source achievements](https://www.benchcouncil.org/evaluation/opencs/annual.html).
 
@@ -85,8 +83,8 @@ You can configure `~/.metagpt/config2.yaml` according to the [example](https://g
 
 ```yaml
 llm:
-  api_type: "openai"  # or azure / ollama / open_llm etc. Check LLMType for more options
-  model: "gpt-4-turbo"  # or gpt-3.5-turbo-1106 / gpt-4-1106-preview
+  api_type: "openai"  # or azure / ollama / groq etc. Check LLMType for more options
+  model: "gpt-4-turbo"  # or gpt-3.5-turbo
   base_url: "https://api.openai.com/v1"  # or forward url / other llm url
   api_key: "YOUR_API_KEY"
 ```
@@ -107,7 +105,7 @@ repo: ProjectRepo = generate_repo("Create a 2048 game")  # or ProjectRepo("<path
 print(repo)  # it will print the repo structure with files
 ```
 
-You can also use its [Data Interpreter](https://github.com/geekan/MetaGPT/tree/main/examples/di)
+You can also use [Data Interpreter](https://github.com/geekan/MetaGPT/tree/main/examples/di) to write code:
 
 ```python
 import asyncio

@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, PrivateAttr, model_validator
 
 from metagpt.config2 import config
 from metagpt.configs.embedding_config import EmbeddingType
+from metagpt.logs import logger
 from metagpt.rag.interface import RAGObject
 
 
@@ -44,7 +45,13 @@ class FAISSRetrieverConfig(IndexRetrieverConfig):
     @model_validator(mode="after")
     def check_dimensions(self):
         if self.dimensions == 0:
-            self.dimensions = self._embedding_type_to_dimensions.get(config.embedding.api_type, 1536)
+            self.dimensions = config.embedding.dimensions or self._embedding_type_to_dimensions.get(
+                config.embedding.api_type, 1536
+            )
+            if not config.embedding.dimensions and config.embedding.api_type not in self._embedding_type_to_dimensions:
+                logger.warning(
+                    f"You didn't set dimensions in config when using {config.embedding.api_type}, default to 1536"
+                )
 
         return self
 
@@ -117,6 +124,16 @@ class ColbertRerankConfig(BaseRankerConfig):
     model: str = Field(default="colbert-ir/colbertv2.0", description="Colbert model name.")
     device: str = Field(default="cpu", description="Device to use for sentence transformer.")
     keep_retrieval_score: bool = Field(default=False, description="Whether to keep the retrieval score in metadata.")
+
+
+class CohereRerankConfig(BaseRankerConfig):
+    model: str = Field(default="rerank-english-v3.0")
+    api_key: str = Field(default="YOUR_COHERE_API")
+
+
+class BGERerankConfig(BaseRankerConfig):
+    model: str = Field(default="BAAI/bge-reranker-large", description="BAAI Reranker model name.")
+    use_fp16: bool = Field(default=True, description="Whether to use fp16 for inference.")
 
 
 class ObjectRankerConfig(BaseRankerConfig):
